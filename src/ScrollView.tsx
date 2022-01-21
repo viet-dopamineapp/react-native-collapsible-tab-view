@@ -65,6 +65,11 @@ export const ScrollView = React.forwardRef<
       enable(true)
     })
 
+    const onScroll = React.useCallback((event: any) => {
+      rest?.onScroll?.(event)
+      scrollHandler(event)
+    }, [rest?.onScroll, scrollHandler])
+
     React.useEffect(() => {
       setRef(name, ref)
     }, [name, ref, setRef])
@@ -117,7 +122,7 @@ export const ScrollView = React.forwardRef<
         bouncesZoom={false}
         style={memoStyle}
         contentContainerStyle={memoContentContainerStyle}
-        onScroll={scrollHandler}
+        onScroll={onScroll}
         onContentSizeChange={scrollContentSizeChangeHandlers}
         scrollEventThrottle={16}
         contentInset={memoContentInset}
