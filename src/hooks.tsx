@@ -453,6 +453,7 @@ export const useScrollHandlerY = (name: TabName, onScroll: any) => {
       snapThreshold,
       enabled,
       scrollTo,
+      onScroll,
     ]
   )
 
