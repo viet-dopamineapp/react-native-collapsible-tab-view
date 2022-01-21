@@ -58,17 +58,12 @@ export const ScrollView = React.forwardRef<
       contentContainerStyle: _contentContainerStyle,
       progressViewOffset,
     } = useCollapsibleStyle()
-    const { scrollHandler, enable } = useScrollHandlerY(name)
+    const { scrollHandler, enable } = useScrollHandlerY(name, rest?.onScroll)
     useAfterMountEffect(() => {
       // we enable the scroll event after mounting
       // otherwise we get an `onScroll` call with the initial scroll position which can break things
       enable(true)
     })
-
-    const onScroll = React.useCallback((event: any) => {
-      rest?.onScroll?.(event)
-      scrollHandler(event)
-    }, [rest?.onScroll, scrollHandler])
 
     React.useEffect(() => {
       setRef(name, ref)
@@ -122,7 +117,7 @@ export const ScrollView = React.forwardRef<
         bouncesZoom={false}
         style={memoStyle}
         contentContainerStyle={memoContentContainerStyle}
-        onScroll={onScroll}
+        onScroll={scrollHandler}
         onContentSizeChange={scrollContentSizeChangeHandlers}
         scrollEventThrottle={16}
         contentInset={memoContentInset}

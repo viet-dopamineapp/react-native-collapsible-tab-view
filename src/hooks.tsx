@@ -215,7 +215,7 @@ export function useScroller<T extends RefComponent>() {
   return scroller
 }
 
-export const useScrollHandlerY = (name: TabName) => {
+export const useScrollHandlerY = (name: TabName, onScroll: any) => {
   const {
     accDiffClamp,
     focusedTab,
@@ -348,6 +348,7 @@ export const useScrollHandlerY = (name: TabName) => {
         if (!enabled.value) return
 
         if (focusedTab.value === name) {
+          onScroll?.(event)
           if (IS_IOS) {
             let { y } = event.contentOffset
             // normalize the value so it starts at 0
