@@ -129,7 +129,6 @@ export function useCollapsibleStyle(): CollapsibleStyle {
     tabBarHeight,
     containerHeight,
     width,
-    scrollYCurrent
   } = useTabsContext()
   const [containerHeightVal, tabBarHeightVal, headerHeightVal] = [
     useConvertAnimatedToValue(containerHeight),
@@ -145,7 +144,7 @@ export function useCollapsibleStyle(): CollapsibleStyle {
           : (containerHeightVal || 0) + (headerHeightVal || 0),
         paddingTop: IS_IOS
           ? 0
-          : (headerHeightVal || 0) + (tabBarHeightVal || 0) - scrollYCurrent.value,
+          : (headerHeightVal || 0) + (tabBarHeightVal || 0),
       },
       progressViewOffset: (headerHeightVal || 0) + (tabBarHeightVal || 0),
     }),
