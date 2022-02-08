@@ -434,6 +434,14 @@ export const Container = React.memo(
           getCurrentIndex: () => {
             return index.value
           },
+          scrollTo: (tabName: string, y: number) => {
+            runOnUI(scrollToImpl)(
+              refMap[tabName],
+              0,
+              y,
+              true
+            )
+          }
         }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [onTabPress]
